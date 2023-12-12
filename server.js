@@ -3,7 +3,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const db = require("./db");
 const User = require("./Models/User");
-const userRoutes = require("./routes/userRoutes");
+const userRoute = require("./routes/userRoute");
+const loginRoute = require("./routes/loginRoute");
 const cors = require("cors");
 
 app.use(cors());
@@ -26,7 +27,8 @@ db.authenticate()
 
 app.use(express.json()); // JSON 파싱 미들웨어
 
-app.use("/users", userRoutes); // /users 경로로 들어오는 모든 요청을 UserRoutes에서 처리
+app.use("/users", userRoute); // '/users' 경로로 들어오는 모든 요청을 userRoute에서 처리
+app.use("/login", loginRoute); // '/login' 경로로 들어오는 모든 요청을 loginRoute에서 처리
 
 app.post("/users", async (req, res) => {
   const newUser = await User.create(req.body);
