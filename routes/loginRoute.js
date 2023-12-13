@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
       return;
     }
     // 로그인 성공 응답
+    req.session.userId = user.user_id;
     res.status(200).json({ message: "로그인 성공", user });
   } catch (error) {
     console.log(error);
