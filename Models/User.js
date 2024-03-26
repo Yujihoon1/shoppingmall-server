@@ -18,6 +18,10 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     // 다른 모델 옵션들 적는 곳

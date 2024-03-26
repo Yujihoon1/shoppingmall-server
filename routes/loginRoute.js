@@ -2,8 +2,11 @@ const express = require("express");
 const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = process.env.SECRET_KEY;
 
 router.post("/", async (req, res) => {
+  console.log(SECRET_KEY);
   const { user_id, password } = req.body;
 
   try {
@@ -26,8 +29,15 @@ router.post("/", async (req, res) => {
       return;
     }
     // 로그인 성공 응답
-    req.session.userId = user.user_id;
-    res.status(200).json({ message: "로그인 성공", user });
+    const token = jwt.sign(
+      {
+        userId: user.user_id,
+        userNum: user.user_num,
+      },
+      SECRET_KEY
+    );
+
+    res.status(200).json({ message: "로그인 성공", user, token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "서버 에러" });
