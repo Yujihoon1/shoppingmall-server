@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../db");
 const Category = require("./Category");
+const Cart = require("./Cart");
 
 const Product = sequelize.define(
   "Product",
@@ -53,5 +54,10 @@ async function getProductByNum(product_num) {
 Product.belongsTo(Category, { foreignKey: "category_id" });
 // 카테고리 테이블은 여러 제품을 가짐
 Category.hasMany(Product, { foreignKey: "category_id" });
+
+Product.hasMany(Cart, {
+  foreignKey: "product_num",
+});
+Cart.belongsTo(Product, { foreignKey: "product_num" });
 
 module.exports = { Product, getProductByNum };
