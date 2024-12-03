@@ -71,10 +71,10 @@ db.authenticate()
     console.error("데이터베이스 연결 실패:", err);
   });
 
-app.post("/users", async (req, res) => {
-  const newUser = await User.create(req.body);
-  res.json(newUser);
-});
+// app.post("/users", async (req, res) => {
+//   const newUser = await User.create(req.body);
+//   res.json(newUser);
+// });
 
 const cron = require("node-cron");
 const { Op } = require("sequelize");
