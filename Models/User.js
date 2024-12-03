@@ -22,6 +22,11 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user_grade: {
+      type: DataTypes.ENUM("user", "admin"), // ENUM 타입으로 정의
+      allowNull: false,
+      defaultValue: "user", // 기본값 설정
+    },
   },
   {
     // 다른 모델 옵션들 적는 곳

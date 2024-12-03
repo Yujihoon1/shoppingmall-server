@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
       {
         userId: user.user_id,
         userNum: user.user_num,
+        userGrade: user.user_grade,
       },
       SECRET_KEY
     );
